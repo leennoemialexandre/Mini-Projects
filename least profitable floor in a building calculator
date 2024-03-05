@@ -1,0 +1,70 @@
+"""
+Leen-Noemi Alexandre
+"""
+
+# This program determines the least profitable floor in a building.
+
+# define variables
+floors = 0
+
+# ask the user how many floors there are in the building
+floors = int(input("How many floors are there in this building?"))
+# floor != 1 and max floor ==9
+while floors < 2 or floors > 9:  # >= greater than equal to , <= less than equal to
+    if floors < 2:
+        print("There must be more than one floor in this building. ")
+        floors = int(input("How many floors are there in this building? "))
+
+    elif floors > 9:
+        print("There must be less than 9 floors in this building. ")
+        floors = int(input("How many floors are there in this building? "))
+
+# ask number of apartments
+apartments = int(input("How many apartments are on the floor: "))
+# apartments != 1 and max floor ==9
+while apartments < 1 or apartments > 9:  # >= greater than equal to , <= less than equal to
+    if apartments < 1:
+        print("There must be more than one apartments in this building. ")
+        apartments = int(input("How many apartments are there in this building? "))
+
+    elif apartments > 9:
+        print("There must be less than 9 floors in this building. ")
+        apartments = int(input("How many apartments are there in this building? "))
+# keep floor # in mind, ex: 4 floors, loop can't ask apartment for floor 5
+
+# floor 2
+
+# get computer to print 201
+rent = 1
+total_rent = 0
+
+
+
+# rent for each floor
+rent_floor = 0
+
+# lowest amount of rent
+lowest = 10000000000
+
+# floor number
+floor_num = 0
+
+
+for i in range(1, floors+1):
+    for a in range(1, apartments+1):
+        rent = int(input("How much is rent in Room #" + str(i) + "0" + str(a) + ":"))
+        while rent < 1:
+            print("The rent must be a positive number.")
+            rent = int(input("How much is rent in Room #" + str(i) + "0" + str(a) + ":"))
+        rent_floor += rent
+    print("The rent for this floor is $", f"{rent_floor:,d}", "\n", sep = "")
+    if rent_floor < lowest:
+        lowest = rent_floor
+        floor_num = i
+    rent_floor = 0
+
+
+print("\n", "The floor is the lowest rent is #", f"{floor_num:,d}", sep="")
+print("The total monthly rent received on floor #", f"{floor_num:,d}", " is $", f"{lowest:,d}", ".", sep="")
+
+
