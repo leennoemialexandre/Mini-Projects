@@ -1,0 +1,146 @@
+"""
+CSCI-UA.0002 Spring 2024
+Assignment #5, Program 2
+Leen-Noemi Alexandre & CS Tutors
+"""
+
+# This program finds Prime Numbers based upon user input
+
+
+print("This program can find prime numbers.")
+print("Mode A: Determine if a supplied number is a prime number", "\n",
+      "Mode B: Produce a list of prime numbers between 1 and 1,000")
+print("Mode C: Produce a table of prime numbers between 1 and 1,000", "\n",
+      "Mode D: Produce a list of prime numbers in a user supplied range")
+print("Mode E: Produce a table of prime numbers in a user supplied range.")
+
+# ask user the question
+selection = input("Which mode would you like to use? ")
+
+while selection not in ["A", "B", "C", "D", "E"]:
+    print("Sorry, I don't understand. Try again")
+    selection = input("Which mode would you like to use? ")
+
+
+# JUST DO THIS FOR MODE A
+# Mode A
+
+divisors = 0
+
+if selection == "A":
+    thesteps = str(input("Do you want to see a)The steps or b) Just the results? "))
+    while thesteps not in ["a", "b"]:
+        print("Sorry, The only options are a or b")
+        thesteps = input("Do you want to see a)The steps or b) Just the results? ")
+# a -> the steps
+        if thesteps == "a":
+            positive_number = int(input("Enter a positive number greater than 1 to test: "))
+    while int(positive_number) < 2:
+        print("I can only process positive numbers greater than 1.")
+        positive_number = input("Enter a positive number greater than 1 to test: ")
+    for i in range(2, positive_number):
+        if positive_number % i == 0:
+            divisors += 1
+            print(f" {i} is a divisor")
+        else:
+            print(f"{i} is NOT a divisor of the number")
+
+    if divisors == 0:
+        print(positive_number, "is prime")
+    else:
+        print(positive_number, "is NOT prime")
+
+
+
+# b -> JUST THE RESULT
+    if thesteps == "b":
+        positive_number = int(input("Enter a positive number greater than 1 to test: "))
+        while int(positive_number) < 2:
+            print("I can only process positive numbers greater than 1.")
+            positive_number = input("Enter a positive number greater than 1 to test: ")
+        if int(positive_number) > 1:
+            if int(positive_number) % 2 == 0 and int(positive_number) % 3 == 0 and int(positive_number) % 5 == 0:
+                print(positive_number, "is NOT a prime number.")
+            else:
+                print(positive_number, "is a prime number.")
+
+
+# Mode B -- Produce a list of prime numbers between 1 and 1,000
+if selection == "B":
+    for num in range(2, 1000):
+        divisors = 0
+        for i in range(2, num):
+            if num % i == 0:
+                divisors += 1
+        if divisors == 0:
+            print(num, "is prime")
+        else:
+            print(num, "is NOT prime")
+
+
+
+# Mode C -- Produce a table of prime numbers between 1 and 1,000
+if selection == "C":
+    rowreset = 0
+    for num in range(2, 1000):
+        divisors = 0
+        for i in range(2, num):
+            if num % i == 0:
+                divisors += 1
+        if divisors == 0:
+            print(format(num, ">3"), end=" ")  # fix formatting
+            rowreset += 1
+            if rowreset % 10 == 0:
+                print()
+
+
+# Mode D: Produce a list of prime numbers in a user supplied range
+divisors = 0
+
+if selection == "D":
+    # Input validation for starting number
+    startingnumber = int(input("Please enter your starting number:"))
+    while startingnumber < 2:
+        print("I can only process positive numbers greater than 1.")
+        startingnumber = int(input("Please enter your starting number:"))
+
+    # Input validation for ending number
+    endingnumber = int(input("Please enter your ending number:"))
+    while endingnumber < 2:
+        print("I can only process positive numbers greater than 1.")
+        endingnumber = int(input("Please enter your ending number:"))
+
+    # Iterate through the range and find prime numbers
+    for num in range(startingnumber, endingnumber + 1):
+        divisors = 0
+        for i in range(2, num):
+            if num % i == 0:
+                divisors += 1
+        if divisors == 0:
+            print(num, "is a prime number.")
+
+
+
+# Mode E: Produce a table of prime numbers in a user supplied range.
+
+# user chooses E
+if selection == "E":
+    startingnumber = int(input("Please enter your starting number:"))
+    endingnumber = int(input("Please enter your ending number:"))
+    max_prime_length = len(str(endingnumber))  # Determine the maximum length of prime numbers
+
+# the row resets to 0
+# divisors => how many numbers the NUM is divisible by
+    rowreset = 0
+    for num in range(startingnumber, endingnumber + 1):
+        divisors = 0
+        for i in range(2, num):
+            if num % i == 0:        # ZERO REMAINDERS = PRIME , MORE THAN 0 = NOT PRIME
+                divisors += 1
+        if divisors == 0:
+            print(format(num, ">" + str(max_prime_length)), end=" ")  # fix formatting
+            rowreset += 1
+            if rowreset % 10 == 0:
+                print()
+
+
